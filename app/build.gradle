@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.wudaosoft.mediarecordandqrscan"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/org.bytedeco.javacpp-presets/opencv/pom.properties'
+        exclude 'META-INF/maven/org.bytedeco.javacpp-presets/opencv/pom.xml'
+        exclude 'META-INF/maven/org.bytedeco.javacpp-presets/ffmpeg/pom.properties'
+        exclude 'META-INF/maven/org.bytedeco.javacpp-presets/ffmpeg/pom.xml'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation group: 'org.bytedeco', name: 'javacv', version: '1.4.1'
+    implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.1-1.4.1', classifier: 'android-arm'
+    implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '3.4.1-1.4.1', classifier: 'android-x86'
+    implementation group: 'org.bytedeco.javacpp-presets', name: 'ffmpeg', version: '3.4.2-1.4.1', classifier: 'android-arm'
+    implementation group: 'org.bytedeco.javacpp-presets', name: 'ffmpeg', version: '3.4.2-1.4.1', classifier: 'android-x86'
+
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
